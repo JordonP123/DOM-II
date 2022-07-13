@@ -42,7 +42,7 @@ headerNavs[0].addEventListener('click', e => {
 //scrolling changes color of text in body once 1000?px? deep in yaxis
 const body = document.querySelector('body');
 function scrolling() {
-    if (window.scrollY > 1400) {
+    if (window.scrollY > 500) {
         body.style.color = 'black';
         body.style.webkitTextStroke ='1px white'
         body.style.background = 'black'
@@ -59,16 +59,49 @@ window.addEventListener('scroll', scrolling);
 const form = document.createElement('input');
 form.placeholder = 'email';
 form.type = 'text';
-form.style.background = 'black';
+form.style.border = '1px solid black'
+form.style.fontSize = '20px'
+form.style.width = '80px'
+form.style.borderRadius = '15px'
 
+//loops over each button and adds form on dblclick
 const btn = document.querySelectorAll('.btn');
 btn.forEach(elem =>{
     elem.addEventListener('dblclick', e =>{
-        form.style.margin = '0 auto';
-        form.style.border = '1px solid black'
-            elem.appendChild(form)
+            form.style.color = 'black';
+            elem.appendChild(form);
         });
 })
 
+//makes text when filling out form black
+form.addEventListener('focus', e=>{
+    e.target.style.color = 'black'
+})
 
-//used 5 event listeners :)s
+//after you click away from typing email, letters turn green
+form.addEventListener('blur', e=>{
+    e.target.style.color = 'green'
+})
+//changes header img to footer img by clicking letter a
+const headerImg = document.querySelector('img');
+
+    document.addEventListener('keydown', e=>{
+        if(e.keyCode === 65){
+            headerImg.setAttribute('src', 'http://localhost:9000/img/destination.jpg')
+        }
+    });
+    
+    //when pointer enters headerImg grow 200px on Y axis;
+    headerImg.addEventListener('pointerenter', e=>{
+        e.target.style.height = '200px';
+    })
+
+    //when pointer leaves go back to 100px;
+    headerImg.addEventListener('pointerleave', e=>{
+        e.target.style.height = '100px';
+    })
+
+
+//used 10 event listeners and preventDefault() 
+
+
